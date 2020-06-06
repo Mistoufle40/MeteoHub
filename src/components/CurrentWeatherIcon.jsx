@@ -16,7 +16,11 @@ export function CurrentWeatherIcon(props) {
     const classes = props.classes;
     const result = props.data;
 
-    let weather =  'Clear'; //result.weather[0].main;
+    let weather = 'default';
+
+    if (result.weather)
+        weather = result.weather[0]?.main;
+
     let weatherIcon;
 
     switch(weather) {
@@ -47,8 +51,7 @@ export function CurrentWeatherIcon(props) {
         default:
             weatherIcon = defaultIcon
     }
-
-    const currentTemp = Math.round(result['temp']);
+    const currentTemp = Math.round(result.main?.temp);
 
     return (
         <div className={classes.root}>

@@ -19,10 +19,16 @@ import Clock from "../components/Clock";
 export function HomePage(props) {
     const classes = useStyles();
     const result = props.data;
-    const cityName = "Toulouse"; // TODO: faire avec la localisation
+    const cityName = result.name;
     //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-    const today = new Date('Fri Jun 5 2020');
-    const weatherDescription = capitalizeFirstLetter('Sky is clear');
+    var today = new Date();
+
+    var weatherDescription;
+
+    if (result.weather)
+         weatherDescription = capitalizeFirstLetter(result.weather[0]?.description);
+    else
+         weatherDescription = capitalizeFirstLetter("Can't fetch information");
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);

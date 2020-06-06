@@ -16,11 +16,11 @@ export function WeatherDetails(props) {
     const classes = styleSheet;
     const result = props.data;
 
-    const humidity = Math.round(89);
-    const windSpeed = 3.14;
-    const windDegree= 38;
-    const cloudiness = Math.round(0);
-    const pressure = Math.round(1006);
+    const humidity = Math.round(result.main?.humidity);
+    const windSpeed = result.wind?.speed;
+    const windDegree= result.wind?.deg;
+    const cloudiness = Math.round(result.clouds?.all);
+    const pressure = Math.round(result.main?.pressure);
 
     return (
         <div className={classes.root}>
