@@ -11,11 +11,22 @@ const moment = require('moment-timezone');
 moment.locale('fr');
 moment.tz.setDefault("Europe/Paris");
 
+async function getData()
+{
+    var key = '8fa88c678c556225329c4e78b95dc66c';
+    var lat = '43.61318588256836';
+    var lon = '1.4219928979873657';
+
+    return fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&units=metric&appid=' + key)
+        .then(res => res.json());
+
+
+}
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            weather: {'temp': 5, 'pluie': 30}, // Valeurs mises en dur. La varicontiendra les valeurs de l'API
+            weather: {},
             loading: true
         };
         history.listen((location, action) => {
@@ -24,18 +35,12 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        //APPEL API
-        /*
-        API.get(http:API)
-            .then(response =>{
-                this.setState( {
-                    weather: response.data,
-                    loading: false
-                })
-            })
-            .catch(error => {
-                console.log('Error when fetching and parsing data', error)
-            })*/
+        getData().then(res => {
+            this.setState( {
+                weather: res,
+            });
+        });
+
     }
 
     render() {
