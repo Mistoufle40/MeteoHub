@@ -4,6 +4,7 @@ import {MyHeaderBar} from './MyHeaderBar';
 import {MyFooter} from './MyFooter';
 import {CurrentWeatherIcon} from '../components/CurrentWeatherIcon'
 import {WeatherDetails} from '../components/WeatherDetails'
+import LocalisationBar from "../components/LocalisationBar"
 
 
 import Container from "@material-ui/core/Container";
@@ -50,6 +51,9 @@ export function HomePage(props) {
                     </Typography>
                     <Typography type="display1">
                         {weatherDescription}
+                    </Typography>
+                    <Typography type="display1">
+                        <LocalisationBar data={result} classes={classes} onCoordinates={props.onCoordinates}/>
                     </Typography>
                     <div className={classes.flex}>
                         <Grid container spacing={2} direction={'row'}>
