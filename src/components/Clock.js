@@ -1,5 +1,4 @@
 import React from "react";
-import Typography from '@material-ui/core/Typography';
 
 function checkTime(i) {
     if (i < 10) {
@@ -34,6 +33,8 @@ export default class Clock extends React.Component {
         clearTimeout(this.timeout);
     }
     render() {
-        return <Typography variant={'gutterBottom'} align={"right"}>{this.state.date}</Typography>;
+        let date = this.state.date;
+
+        return (date);
     }
 }
